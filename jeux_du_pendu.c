@@ -148,6 +148,3 @@ int main(void){
     printf("\ngagné\n\n");
     return 0;
 }
-
-// rest à convertir les majuscule en minuscule 
-// embélir le mot inconu

@@ -75,15 +75,14 @@ void afficher_mot_devine(char *mot){
 }
 
 void afficher_progression(char *mot_actuel,char *lettre_deja_fausse,int ereur_restant){
+    printf(" %s \n",lettre_deja_fausse);
     printf("Les lettre fausse deja utilise sont %s et il reste %d d'ereur \n",lettre_deja_fausse,ereur_restant);
     afficher_mot_devine(mot_actuel);
 }
 
-int choisir_mot_mystere(char **list_mots,int c){
-    char list[TAILLE_MAX_MOT];
-    int v; // valeur de la boucle
+int choisir_mot_mystere(char **list_mots,int n){
     srand(time(NULL));
-    return(list_mots[0]);
+    return(list_mots[rand()%(21)]);
 }
 
 // rand()%(c+1)
@@ -101,7 +100,8 @@ int main(void){
     int mot_touvee=0; // tanque mot mystére non trouvée = 0 sinon = 1 si trouvé
     int n; // valeur de la boucle
     int j=0; // valeur de la boucle
-    char mot[TAILLE_MAX_MOT]={choisir_mot_mystere(liste_mots,nb_mots)};
+    char mot[TAILLE_MAX_MOT];
+    strcpy(mot, choisir_mot_mystere(liste_mots,20));
     erreur_max=choisir_N_erreurs();
     printf("Le mot mystére est %s avec %d érreur \n",mot,erreur_max);
     for(n=0;n<strlen(mot);n=n+1){
@@ -156,6 +156,7 @@ int main(void){
 
         afficher_progression(mot_a_trouve,mot_erreu,erreur_max-erreur);
         afficher_pendu(erreur,erreur_max);
+        printf(" %s \n", mot_erreu);
 
         if(erreur==erreur_max){ // le joueur 2 n'a plus de vie
             printf("\nPERDU\n le mot été %s \n\n",mot);
